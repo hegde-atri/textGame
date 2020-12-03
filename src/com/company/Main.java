@@ -7,6 +7,8 @@ import java.util.*;
 public class Main {
 
     int[] stats = new int[5];
+    int[] inventory = new int[6];
+    int hp = 100;
     public static final Scanner input = new Scanner(System.in);
 
 
@@ -36,10 +38,41 @@ public class Main {
 
     }
 
+    //This displays the letters they need to enter to perform actions in the game
+    public static void keyBinds(){
 
+    }
+
+
+    //will scan for inputs like fight, sword(s), block(b), dodge(d), heavy attack
+    public static void fightMode(){
+
+    }
+
+    //Moves the user to different locations and provides a brief description of his surroundings
+    public static void move(String direction){
+
+    }
+
+    //Displays the items in the Users Inventory
+    public static void displayInventory(){
+
+    }
+
+
+    //This searches the 'direction' the user has chosen to travel in, rolls a dice and has a 50% chance of spotting a mob
+    public static void searchLocation(){
+
+    }
+
+
+    //Provides the loop where all my methods will be called in
+    public static void runGame(){
+
+    }
 
     public static void main(String[] args) {
-        rules();
+        Mobs b = new Mobs();
 
 
     }
