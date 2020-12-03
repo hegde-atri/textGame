@@ -11,7 +11,7 @@ public class Main {
     int hp = 100;
     public static final Scanner input = new Scanner(System.in);
 
-
+    //Experimental and not in use at the moment. Creates a static window with basic attributes
     private static void createWindow() {
         JFrame frame = new JFrame("Atri's Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -23,6 +23,7 @@ public class Main {
         frame.setVisible(true);
     }
 
+    //This displays the list of rules of the game
     public static void rules(){
         System.out.println("To start you will be given a sword and shield");
         System.out.println("Fighting mobs will earn XP");
@@ -33,19 +34,31 @@ public class Main {
                 " there is a mob present, you will be told its name and will be given an option to engage or ignore");
         System.out.println("Continue using using movement commands to ignore and type in fight to engage");
         System.out.println("Type in i to display inventory");
-        System.out.println("Type in rules to display this page again");
+        System.out.println("Type in r to display this page again");
 
 
     }
 
     //This displays the letters they need to enter to perform actions in the game
     public static void keyBinds(){
+        System.out.println("-------------------------");
+        System.out.println("       Keybinds page     ");
+        System.out.println("  r = rules              ");
+        System.out.println("  i = inventory          ");
+        System.out.println("  l = light attack       ");
+        System.out.println("  h = heavy attack       ");
+        System.out.println("  d = dodge              ");
+        System.out.println("  s = shield             ");
+        System.out.println();
 
     }
 
 
-    //will scan for inputs like fight, sword(s), block(b), dodge(d), heavy attack
-    public static void fightMode(){
+    //will perform actions for inputs like fight, sword, block, dodge, heavy attack
+    public static void fightMode(char key){
+
+
+
 
     }
 
@@ -71,8 +84,19 @@ public class Main {
 
     }
 
+    //Issues I'm aware and working to find a solution for
+    public static void printBugs(){
+        System.out.println("Known bug: fight progress resets upon Invalid Input");
+        System.out.println("Release 0.1");
+        System.out.println("Atri Hegde ©");
+    }
+
+
     public static void main(String[] args) {
+
         Mobs b = new Mobs();
+        keyBinds();
+
 
 
     }
