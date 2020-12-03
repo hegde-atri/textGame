@@ -2,6 +2,8 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 /*
@@ -11,7 +13,7 @@ Surroundings have no impact on the actual game, surroundings aren't real, you ar
 
 public class Main {
 
-    public static String scenaryDirectory;
+    public static String sceneryDirectory;
     int[] stats = new int[5];
     int[] inventory = new int[6];
     int hp = 100;
@@ -82,27 +84,20 @@ public class Main {
 
     }
 
-    //This method sets the directory of the scenary.txt thats used in the next method.
-    public static void setScenaryDirectory(){
-        scenaryDirectory = System.getProperty("user.dir") + "\\scenary.txt";
+    //This method sets the directory of the scenery.txt that's used in the next method.
+    public static void setSceneryDirectory(){
+        sceneryDirectory = System.getProperty("user.dir") + "\\scenery.txt";
     }
 
 
+    public static void readFile(){
+
+    }
 
     //Moves the user to different locations and provides a brief description of his surroundings
     public static void move(String direction){
         //The string array has random description of surrounding that are chosen at random to show to the user
-//        String[] surroundings = {"You stand in a flat region dotted with huge multicolored stones. It's also spotted with trees, grass, and foul-smelling wildflowers.\nYou can see a huge river close by and a citadel to the south.\nThe temperature is quite cool and the sky is overcast."
-//                , "You stand in a mountainous region strewn with small shrubs.\nYou can see a lake nearby.\nThe temperature is very warm and the sky is mostly clear."
-//                , "You stand in a hilly region sprinkled with smooth multicolored stones.\nYou can see a bog nearby.\nThe temperature is hot and the sky is overcast."
-//                , "You stand in a broken terrain smattered with unusual grass and various wildflowers.\nYou can see a stream in the distance.\nThe temperature is a little cool and the sky is partially cloudy."
-//                , "You stand in a hilly terrain covered with huge purplish stones.\nYou can see a village nearby.\nThe temperature is hot and the sky is overcast."
-//                , "You stand in a mountainous region sprinkled with foul-smelling trees, dead shrubs, and grass.\nYou can see a small body of water to the south and a cave to the north.\nThe temperature is quite cool and the sky is overcast."
-//                , "You stand in a mountainous terrain strewn with gigantic bluish rocks.  You can see a bog miles away and a monastery nearby.  The temperature is very warm and the sky is overcast."
-//                , "You stand in a mountainous region spotted with grass and wildflowers.  You can see a large lake miles away.  The temperature is somewhat warm and the sky is partially cloudy."
-//                , "You stand in a flat area sprinkled with huge brown stones.  You can see a tower to the north.  The temperature is warm and the sky is partially cloudy."
-//                , "You stand in a mountainous terrain replete with small shrubs.  You can see a small body of water close by and a citadel to the east.  The temperature is quite cool and the sky is partially cloudy."};
-
+        String surroundings ;
     }
 
     //Displays the items in the Users Inventory
@@ -130,10 +125,14 @@ public class Main {
     }
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        setSceneryDirectory();
+        System.out.println(sceneryDirectory);
+        reservoirSampling line = new reservoirSampling();
+        System.out.println(line.sampler(1));
 
         Mobs b = new Mobs();
-        keyBinds();
+
 
 
 
