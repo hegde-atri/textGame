@@ -289,7 +289,8 @@ public class Main {
                 }
 
             }
-            System.out.println("You beat the mob, Well Done!");
+            if(playerLife == true) System.out.println("You beat the mob, Well Done!");
+
 
 
 
@@ -317,7 +318,10 @@ public class Main {
 
     //Provides the loop where all my methods will be called in
     public static void runGame(){
+
+        printBugs();
         intro();
+        rules();
         while(playerLife == true){
             userInput();
             if(hp<1) playerLife = false;
