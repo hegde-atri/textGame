@@ -58,7 +58,7 @@ public class Main {
         System.out.println("  h = heavy attack       ");
         System.out.println("  d = dodge              ");
         System.out.println("  s = shield             ");
-        System.out.println();
+        System.out.println("  z = search Location    ");
 
     }
 
@@ -95,9 +95,10 @@ public class Main {
     }
 
     //Moves the user to different locations and provides a brief description of his surroundings
-    public static void move(String direction){
-        //The string array has random description of surrounding that are chosen at random to show to the user
-        String surroundings ;
+    public static void move(String direction) throws IOException {
+        // uses the getRandomLine method fromthe RandomLine Class
+        RandomLine line = new RandomLine();
+        line.getRandomLine(); ;
     }
 
     //Displays the items in the Users Inventory
@@ -108,6 +109,7 @@ public class Main {
 
     //This searches the 'direction' the user has chosen to travel in, rolls a dice and has a 50% chance of spotting a mob
     public static void searchLocation(){
+
 
     }
 
@@ -125,13 +127,10 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        setSceneryDirectory();
-        System.out.println(sceneryDirectory);
-        RandomLine line = new RandomLine();
-        line.getRandomLine();
-
-        Mobs b = new Mobs();
+    public static void main(String[] args){
+//        setSceneryDirectory();
+//        System.out.println(sceneryDirectory);
+//        Mobs b = new Mobs();
 
 
 

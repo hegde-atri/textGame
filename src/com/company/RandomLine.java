@@ -5,27 +5,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomLine{
 
-/*
-Use RandomAccessFile:
-Construct a RandomAccessFile, file
-Get the length of that file, filelen, by calling file.length()
-Generate a random number, pos, between 0 and filelen
-Call file.seek(pos) to seek to the random position
-Call file.readLine() to get to the end of the current line
-Read the next line by calling file.readLine() again
-*/
-
     public void getRandomLine() throws IOException {
-            RandomAccessFile file = new RandomAccessFile(getSceneryDirectory(), "r");
-            long fileLength = file.length();
-            long randomPos = ThreadLocalRandom.current().nextLong(fileLength);
-            file.seek(randomPos);
-            file.readLine();
-            String str = file.readLine();
-            System.out.println(str);
+            RandomAccessFile file = new RandomAccessFile(getSceneryDirectory(), "r"); //Construct a RandomAccessFile, file
+            long fileLength = file.length();                                              //Get the length of that file, fileLength, by calling file.length()
+            long randomPos = ThreadLocalRandom.current().nextLong(fileLength);            //Generate a random number (randomPos) between 0 and fileLength
+            file.seek(randomPos);                                                         //Use .seek() to go that position in the text file
+            file.readLine();                                                              // Use file.readLine() to read whatever remains of that line in the file
+            String str = file.readLine();                                                 // Read the nextLine and assign it to str
+            System.out.println(str);                                                      //Prints the random sentence/line out
 
     }
-
 
 
     public static String getSceneryDirectory(){
