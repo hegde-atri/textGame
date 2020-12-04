@@ -128,8 +128,8 @@ public class Main {
     public static void main(String[] args) throws IOException {
         setSceneryDirectory();
         System.out.println(sceneryDirectory);
-        reservoirSampling line = new reservoirSampling();
-        System.out.println(line.sampler(1));
+        RandomLine line = new RandomLine();
+        line.getRandomLine();
 
         Mobs b = new Mobs();
 

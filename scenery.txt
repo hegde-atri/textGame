@@ -1,4 +1,4 @@
 You stand in a mountainous terrain replete with small shrubs.  You can see a small body of water close by and a citadel to the east.  The temperature is quite cool and the sky is partially cloudy.
 You stand in a flat area sprinkled with huge brown stones.  You can see a tower to the north.  The temperature is warm and the sky is partially cloudy.
-You stand in a flat region dotted with huge multicolored stones. It's also spotted with trees, grass, and foul-smelling wildflowers.\nYou can see a huge river close by and a citadel to the south.\nThe temperature is quite cool and the sky is overcast.
-You stand in a broken terrain scattered with unusual grass and various wildflowers.\nYou can see a stream in the distance.\nThe temperature is a little cool and the sky is partially cloudy.
+You stand in a flat region dotted with huge multicolored stones. It's also spotted with trees, grass, and foul-smelling wildflowers. You can see a huge river close by and a citadel to the south. The temperature is quite cool and the sky is overcast.
+You stand in a broken terrain scattered with unusual grass and various wildflowers. You can see a stream in the distance. The temperature is a little cool and the sky is partially cloudy.
