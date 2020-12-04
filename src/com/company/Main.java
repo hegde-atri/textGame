@@ -21,8 +21,7 @@ public class Main {
     int[] stats = new int[5];
     public static String[] inventory = new String[6];
     public static int hp = 100;
-    public static int mob;
-    public static int mobHp;
+    public static int mob, mobHp;
     public static final Scanner input = new Scanner(System.in);
     static Random randint = new Random();
     public static boolean playerLife = true;
@@ -207,6 +206,7 @@ public class Main {
         }
 
         int damageDealt = multiplier*baseDamage;
+        hp -= damageDealt;
         return damageDealt;
     }
 
@@ -227,6 +227,7 @@ public class Main {
         }
 
         int damageDealt = multiplier*baseDamage;
+        mobHp -= damageDealt;
         return damageDealt;
 
     }
@@ -257,36 +258,44 @@ public class Main {
             while(enemyAlive) {
 
                 checkCount(count);
-                int a;
+                int a, x;
                 System.out.print("Your turn to attack- ");
                 char attackKey = input.nextLine().charAt(0);
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(500);
 
                 if(attackKey == 'l'){
                     a = playerDamage();
                     System.out.println("Damage dealt- " + a);
                     System.out.println("Mob health- " + mobHp);
                     count -= count;
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 }else if(attackKey == 'h'){
                     a = playerDamage();
                     System.out.println("Damage dealt- " + a);
                     System.out.println("Mob health- " + mobHp);
                     mobHp -=10;
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 }else{
                     System.out.println("Invalid input!");
                 }
 
-                System.out.println("Enemy is now attacking!");
-
-
+                //Checks if Mob is still alive after player attacks
                 if(isMobAlive() == false){
                     enemyAlive = false;
-                }else if(isPlayerAlive() == false){
-                    System.out.println("lmao you died !");
-
+                    break;
                 }
+
+                System.out.println("Enemy is now attacking!");
+                x = mobDamage();
+                TimeUnit.MILLISECONDS.sleep(500);
+                System.out.println("Damage taken- " + x);
+                System.out.println("Your Health- " + hp);
+
+                //Checks if player is still alive after mob attacks
+                 if(isPlayerAlive() == false){
+                    System.out.println("lmao you died !");
+                    break;
+                 }
 
             }
             if(playerLife == true) System.out.println("You beat the mob, Well Done!");
