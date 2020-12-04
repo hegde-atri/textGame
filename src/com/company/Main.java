@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 
+
 /*
 This project is highly undeveloped and not finished, many little details like, exploration is totally random and you cannot end in the same place through retracing steps.
 Surroundings have no impact on the actual game, surroundings aren't real, you aren't gonna find a river in front of you nor is it gonna affect the game
@@ -13,10 +14,12 @@ Surroundings have no impact on the actual game, surroundings aren't real, you ar
 
 public class Main {
 
+
     public static String sceneryDirectory;
     int[] stats = new int[5];
     int[] inventory = new int[6];
-    int hp = 100;
+    public static int hp = 100;
+    public static int mobHp;
     public static final Scanner input = new Scanner(System.in);
 
     //Experimental and not in use at the moment. Creates a static window with basic attributes
@@ -54,27 +57,40 @@ public class Main {
         System.out.println("       Keybinds page     ");
         System.out.println("  r = rules              ");
         System.out.println("  i = inventory          ");
+        System.out.println("  w = forward            ");
+        System.out.println("  s = backward           ");
+        System.out.println("  a = left               ");
+        System.out.println("  d = right              ");
         System.out.println("  l = light attack       ");
         System.out.println("  h = heavy attack       ");
-        System.out.println("  d = dodge              ");
-        System.out.println("  s = shield             ");
+        System.out.println("  j = dodge              ");
+        System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
+        System.out.println("  q = quit game          ");
 
     }
 
 
     //will perform actions for inputs like fight, sword, block, dodge, heavy attack
-    public static void fightMode(){
+    public static void userInput() throws IOException {
         char key = input.nextLine().charAt(0);
         switch(key){
             case('r'):
                 rules();
             case('i'):
                 displayInventory();
-            case('l'):
-            case('h'):
-            case('d'):
+            case('w'):
+                sceneryDescription();
+                break;
+            case('a'):
+                sceneryDescription();
+                break;
             case('s'):
+                sceneryDescription();
+                break;
+            case('d'):
+                sceneryDescription();
+                break;
             default:
                 System.out.println("Invalid Input!!");
                 break;
@@ -90,15 +106,20 @@ public class Main {
     }
 
 
-    public static void readFile(){
-
-    }
-
-    //Moves the user to different locations and provides a brief description of his surroundings
-    public static void move(String direction) throws IOException {
+    public static void sceneryDescription() throws IOException {
         // uses the getRandomLine method fromthe RandomLine Class
         RandomLine line = new RandomLine();
-        line.getRandomLine(); ;
+        boolean found = false;
+        while(found == false){
+            String sceneryStr = line.getRandomLine();
+            if(sceneryStr==(null)){
+                found = false;
+                //System.out.println("repeating if statement"); This control statement allows me to see if this method throws a NullPointerException, because i cannot use .equals(nulls) as the parameter for the if statement
+            }else{
+                System.out.println(sceneryStr);
+                found = true;
+            }
+        }
     }
 
     //Displays the items in the Users Inventory
@@ -107,12 +128,44 @@ public class Main {
     }
 
 
-    //This searches the 'direction' the user has chosen to travel in, rolls a dice and has a 50% chance of spotting a mob
+    //This searches the 'direction' the user has chosen to travel in, rolls a dice and has a 33% chance of finding a mob
     public static void searchLocation(){
+        Mobs mobs = new Mobs();
+        if(mobs.mobFound()==1){
+            int mob = mobs.mobSelector();
+            fight(mob);
+        }
+    }
 
+    public static void setMobHp(int mob){
+        if(mob==1){
+            mobHp = 100;
+        }else if(mob==2){
+            mobHp = 150;
+        }else if(mob==3){
+            mobHp = 200;
+        }else{
+            mobHp = 100;
+        }
 
     }
 
+    //Engages battle mode where hp of you and the monster will display every now and then
+    public static void fight(int mob){
+        if(mob==1){
+            mobHp = 100;
+            boolean mobLife = true;
+            while(mobLife==true){
+
+            }
+
+        }else if(mob==2){
+            mobHp = 150;
+        }else if(mob==3){
+            mobHp = 200;
+        }
+
+    }
 
     //Provides the loop where all my methods will be called in
     public static void runGame(){
@@ -127,10 +180,16 @@ public class Main {
     }
 
 
-    public static void main(String[] args){
-//        setSceneryDirectory();
-//        System.out.println(sceneryDirectory);
-//        Mobs b = new Mobs();
+    public static void main(String[] args) throws IOException {
+        setSceneryDirectory();
+//        System.out.println(mobs.mobSelector());
+       for(int i =0; i<50; i++){
+           sceneryDescription();
+       }
+//        while(true){
+//            userInput();
+//        }
+
 
 
 
