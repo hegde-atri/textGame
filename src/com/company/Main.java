@@ -40,11 +40,12 @@ public class Main {
 
     //Intro to the game where basic rules are told and what to do in the game!
     public static void intro(){
-        System.out.println("Welcome to this game where you use keybinds to move around and search the location. \nIf there is a mob in the location you fight it and it can drop loot, loot varies with the difficulty of the mob \nType in r for rules and y for keybinds (case sensitive)");
+        System.out.println("Welcome to this game where you use inputs to move around and search the location. \nIf there is a mob in the location you fight it and it can drop loot, loot varies with the difficulty of the mob \nType in r for rules and y for inputs (case sensitive)");
     }
 
     //This displays the list of rules of the game
     public static void rules(){
+        System.out.println("_______________________________________________________________________________________________________________________");
         System.out.println("To start you will be given a sword and shield");
         System.out.println("Fighting mobs will earn XP");
         System.out.println("Fighting mob Bosses that appear randomly can give weapon drops at the end of the battle");
@@ -55,6 +56,7 @@ public class Main {
         System.out.println("Continue using using movement commands to ignore and type in fight to engage");
         System.out.println("Type in i to display inventory");
         System.out.println("Type in r to display this page again");
+        System.out.println("`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````");
 
 
     }
@@ -62,7 +64,7 @@ public class Main {
     //This displays the letters they need to enter to perform actions in the game
     public static void keyBinds(){
         System.out.println("--------------------------");
-        System.out.println("       Keybinds page     ");
+        System.out.println("       Inputs page       ");
         System.out.println("  r = rules              ");
         System.out.println("  i = inventory          ");
         System.out.println("  w = forward            ");
@@ -74,8 +76,12 @@ public class Main {
         System.out.println("  j = dodge              ");
         System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
-        System.out.println("  y = keybinds (current) ");
+        System.out.println("  r = store item         ");
+        System.out.println("1-6 = drop item from     ");
+        System.out.println("      inventory          ");
+        System.out.println("  y = input page (current)");
         System.out.println("  q = quit game          ");
+        System.out.println("--------------------------");
 
 
     }
@@ -86,8 +92,10 @@ public class Main {
         switch(key){
             case('r'):
                 rules();
+                break;
             case('i'):
                 displayInventory();
+                break;
             case('w'):
                 sceneryDescription();
                 break;
@@ -184,6 +192,7 @@ public class Main {
 
     //returns the value of damage dealt to the mob
     public static int playerDamage(){
+
         int multiplier = randint.nextInt(5)+1;  //This is multiplied with the baseDamage for total damage dealt
         int baseDamage;                            //This changes according to the total health of the mob
 
@@ -237,9 +246,7 @@ public class Main {
         boolean isPlayeralive = true;
         intro();
         while(isPlayeralive == true){
-
-
-
+            userInput();
             if(hp<1) isPlayeralive = false;
         }
 
@@ -253,6 +260,7 @@ public class Main {
 //            setMobHp();
 //            System.out.println(mobDamage());
 //        }
+        runGame();
 
 
 
