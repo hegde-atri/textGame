@@ -5,6 +5,7 @@ import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 
 /*
@@ -24,6 +25,7 @@ public class Main {
     public static int mobHp;
     public static final Scanner input = new Scanner(System.in);
     static Random randint = new Random();
+    public static boolean isPlayeralive = true;
 
 
     //Experimental and not in use at the moment. Creates a static window with basic attributes
@@ -53,7 +55,8 @@ public class Main {
         System.out.println("You have an inventory that has 5 weapon slots and a shield slot");
         System.out.println("When not in combat you can find people to fight by moving around the map by typing in forward, backward, right and left\nif" +
                 " there is a mob present, you will be told its name and will be given an option to engage or ignore");
-        System.out.println("Continue using using movement commands to ignore and type in fight to engage");
+        System.out.println("Continue using using movement commands to ignore and type in f to engage");
+        System.out.println("A heavy attack can be used only when it has not been used for 2 turns, and does 10 extra damage");
         System.out.println("Type in i to display inventory");
         System.out.println("Type in r to display this page again");
         System.out.println("`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````");
@@ -71,10 +74,11 @@ public class Main {
         System.out.println("  s = backward           ");
         System.out.println("  a = left               ");
         System.out.println("  d = right              ");
+        System.out.println("  f = fight enemy        ");
         System.out.println("  l = light attack       ");
         System.out.println("  h = heavy attack       ");
-        System.out.println("  j = dodge              ");
-        System.out.println("  k = shield             ");
+//        System.out.println("  j = dodge              ");
+//        System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
         System.out.println("  r = store item         ");
         System.out.println("1-6 = drop item from     ");
@@ -107,6 +111,18 @@ public class Main {
                 break;
             case('d'):
                 sceneryDescription();
+                break;
+            case('f'):
+                engageEnemy();
+                break;
+            case('z'):
+                searchLocation();
+                break;
+            case('y'):
+                keyBinds();
+                break;
+            case('q'):
+                isPlayeralive = false;
                 break;
             default:
                 System.out.println("Invalid Input!!");
@@ -155,7 +171,11 @@ public class Main {
         Mobs mobs = new Mobs();
         if(mobs.mobFound()==1){
             mob = mobs.mobSelector();
+            setMobHp();
+            System.out.println("Mob found in the area, type f to fight it");
 
+        }else{
+            System.out.println("No mobs were found!");
         }
     }
 
@@ -230,8 +250,37 @@ public class Main {
     }
 
     //Engages battle mode where hp of you and the monster will display every now and then
-    public static void fight(int damage, int mob){
+    public static void engageEnemy(){
+        try {
+            boolean enemyAlive = true;
+            while(enemyAlive) {
+                int a;
+                System.out.print("Your turn to attack- ");
+                char attackKey = input.nextLine().charAt(0);
+                if(attackKey == 'l'){
+                    a = playerDamage();
 
+                    TimeUnit.SECONDS.sleep(1);
+                }else if(attackKey == 'h'){
+                    playerDamage();
+                    mobHp -=10;
+                    TimeUnit.SECONDS.sleep(1);
+                }else if(attackKey == 'j'){
+                    System.out.println("dodging next attack...");
+                    TimeUnit.SECONDS.sleep(1);
+                }else{
+                    System.out.println("Invalid input!");
+                }
+                System.out.println("Enemy is now attacking!");
+
+            }
+
+
+
+
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
     }
 
     //Issues I'm aware and working to find a solution for
@@ -243,12 +292,13 @@ public class Main {
 
     //Provides the loop where all my methods will be called in
     public static void runGame(){
-        boolean isPlayeralive = true;
         intro();
         while(isPlayeralive == true){
             userInput();
             if(hp<1) isPlayeralive = false;
         }
+
+        System.out.println("GGWP");
 
 
     }
