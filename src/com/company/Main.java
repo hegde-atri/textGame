@@ -81,7 +81,7 @@ public class Main {
     }
 
     //will perform actions for inputs like fight, sword, block, dodge, heavy attack
-    public static void userInput() throws IOException {
+    public static void userInput(){
         char key = input.nextLine().charAt(0);
         switch(key){
             case('r'):
@@ -115,7 +115,7 @@ public class Main {
     }
 
     //Prints out scenery description as a randomline from scenery.txt
-    public static void sceneryDescription() throws IOException {
+    public static void sceneryDescription() {
         // uses the getRandomLine method fromthe RandomLine Class
         RandomLine line = new RandomLine();
         boolean found = false;
@@ -237,7 +237,6 @@ public class Main {
         boolean isPlayeralive = true;
         intro();
         while(isPlayeralive == true){
-
 
 
 
