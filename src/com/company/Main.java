@@ -10,6 +10,7 @@ import java.util.*;
 /*
 This project is highly undeveloped and not finished, many little details like, exploration is totally random and you cannot end in the same place through retracing steps.
 Surroundings have no impact on the actual game, surroundings aren't real, you aren't gonna find a river in front of you nor is it gonna affect the game
+I have referred the enemies in the game as mobs which you will see frequently in variable names and comments.
 */
 
 public class Main {
@@ -17,10 +18,13 @@ public class Main {
 
     public static String sceneryDirectory;
     int[] stats = new int[5];
-    int[] inventory = new int[6];
+    public static String[] inventory = new String[6];
     public static int hp = 100;
+    public static int mob;
     public static int mobHp;
     public static final Scanner input = new Scanner(System.in);
+    static Random randint = new Random();
+
 
     //Experimental and not in use at the moment. Creates a static window with basic attributes
     private static void createWindow() {
@@ -124,7 +128,13 @@ public class Main {
 
     //Displays the items in the Users Inventory
     public static void displayInventory(){
-
+        for(int i=0; i<6; i++){
+            if(inventory[i]==null){
+                System.out.print("(empty) ");
+            }else {
+                System.out.print(inventory[i] + " ");
+            }
+        }
     }
 
 
@@ -132,43 +142,60 @@ public class Main {
     public static void searchLocation(){
         Mobs mobs = new Mobs();
         if(mobs.mobFound()==1){
-            int mob = mobs.mobSelector();
-            fight(mob);
+            mob = mobs.mobSelector();
+
         }
     }
 
-    public static void setMobHp(int mob){
+    //Set the mobHp based on the level of the mob
+    public static void setMobHp(){
         if(mob==1){
             mobHp = 100;
         }else if(mob==2){
             mobHp = 150;
         }else if(mob==3){
             mobHp = 200;
-        }else{
-            mobHp = 100;
         }
+    }
 
+    public static int mobDamage(){
+
+        int multiplier = randint.nextInt(4)+1; //This is multiplied with the baseDamage for total damage dealt
+        int baseDamage; //This changes according to the total health of the mob
+
+        if(150<mobHp && mobHp<201){
+            baseDamage = 5;
+        }else if(100<mobHp && mobHp<151){
+            baseDamage = 4;
+        }else if(50<mobHp && mobHp<101){
+            baseDamage = 3;
+        }else{
+            baseDamage = 0;
+        }
+        int damageDealt = multiplier*baseDamage;
+        return damageDealt;
+    }
+
+    //This method checks if the mobs health is more less than 1, if it is less than one, it returns false, else it returns true
+    public static boolean isMobAlive(){
+        if(mobHp<1){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    //This method checks if the players health is less than 1, if it is less than 1 it returns false, else it returns true
+    public static boolean isPlayerAlive(){
+        if(hp<1){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     //Engages battle mode where hp of you and the monster will display every now and then
-    public static void fight(int mob){
-        if(mob==1){
-            mobHp = 100;
-            boolean mobLife = true;
-            while(mobLife==true){
-
-            }
-
-        }else if(mob==2){
-            mobHp = 150;
-        }else if(mob==3){
-            mobHp = 200;
-        }
-
-    }
-
-    //Provides the loop where all my methods will be called in
-    public static void runGame(){
+    public static void fight(int damage, int mob){
 
     }
 
@@ -179,16 +206,19 @@ public class Main {
         System.out.println("Atri Hegde ©");
     }
 
+    //Provides the loop where all my methods will be called in
+    public static void runGame(){
+
+    }
 
     public static void main(String[] args) throws IOException {
-        setSceneryDirectory();
-//        System.out.println(mobs.mobSelector());
-       for(int i =0; i<50; i++){
-           sceneryDescription();
-       }
-//        while(true){
-//            userInput();
+//        setSceneryDirectory();
+//        for(int i =0; i<50; i++){
+//            searchLocation();
+//            setMobHp();
+//            System.out.println(mobDamage());
 //        }
+
 
 
 

@@ -7,7 +7,7 @@ public class Mobs {
 
     //This method here returns 0 for no mobs found or a number ranging from 1-5 as a mob
     public int mobFound(){
-        int mobScanner = randint.nextInt(3);
+        int mobScanner = randint.nextInt(3)+1;
         if(mobScanner>2){
             return 1;
         }
@@ -28,18 +28,6 @@ public class Mobs {
             return -1;
         }
     }
-
-//    public void mobOne(){
-//        System.out.println("mob one");
-//    }
-//
-//    public void mobTwo(){
-//        System.out.println("mob two");
-//    }
-//
-//    public void mobThree(){
-//        System.out.println("mob three");
-//    }
 
 
 }
