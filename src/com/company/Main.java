@@ -38,6 +38,11 @@ public class Main {
         frame.setVisible(true);
     }
 
+    //Intro to the game where basic rules are told and what to do in the game!
+    public static void intro(){
+        System.out.println("Welcome to this game where you use keybinds to move around and search the location. \nIf there is a mob in the location you fight it and it can drop loot, loot varies with the difficulty of the mob \nType in r for rules and y for keybinds (case sensitive)");
+    }
+
     //This displays the list of rules of the game
     public static void rules(){
         System.out.println("To start you will be given a sword and shield");
@@ -54,10 +59,9 @@ public class Main {
 
     }
 
-
     //This displays the letters they need to enter to perform actions in the game
     public static void keyBinds(){
-        System.out.println("-------------------------");
+        System.out.println("--------------------------");
         System.out.println("       Keybinds page     ");
         System.out.println("  r = rules              ");
         System.out.println("  i = inventory          ");
@@ -70,10 +74,11 @@ public class Main {
         System.out.println("  j = dodge              ");
         System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
+        System.out.println("  y = keybinds (current) ");
         System.out.println("  q = quit game          ");
 
-    }
 
+    }
 
     //will perform actions for inputs like fight, sword, block, dodge, heavy attack
     public static void userInput() throws IOException {
@@ -109,7 +114,7 @@ public class Main {
         sceneryDirectory = System.getProperty("user.dir") + "\\scenery.txt";
     }
 
-
+    //Prints out scenery description as a randomline from scenery.txt
     public static void sceneryDescription() throws IOException {
         // uses the getRandomLine method fromthe RandomLine Class
         RandomLine line = new RandomLine();
@@ -137,7 +142,6 @@ public class Main {
         }
     }
 
-
     //This searches the 'direction' the user has chosen to travel in, rolls a dice and has a 33% chance of finding a mob
     public static void searchLocation(){
         Mobs mobs = new Mobs();
@@ -158,10 +162,11 @@ public class Main {
         }
     }
 
+    //returns the value of damage dealt which is dealt towards the player
     public static int mobDamage(){
 
-        int multiplier = randint.nextInt(4)+1; //This is multiplied with the baseDamage for total damage dealt
-        int baseDamage; //This changes according to the total health of the mob
+        int multiplier = randint.nextInt(4)+1;   //This is multiplied with the baseDamage for total damage dealt
+        int baseDamage;                             //This changes according to the total health of the mob
 
         if(150<mobHp && mobHp<201){
             baseDamage = 5;
@@ -172,8 +177,29 @@ public class Main {
         }else{
             baseDamage = 0;
         }
+
         int damageDealt = multiplier*baseDamage;
         return damageDealt;
+    }
+
+    //returns the value of damage dealt to the mob
+    public static int playerDamage(){
+        int multiplier = randint.nextInt(5)+1;  //This is multiplied with the baseDamage for total damage dealt
+        int baseDamage;                            //This changes according to the total health of the mob
+
+        if(150<hp && hp<201){
+            baseDamage = 8;
+        }else if(100<hp && hp<151){
+            baseDamage = 7;
+        }else if(50<hp && hp<101){
+            baseDamage = 6;
+        }else{
+            baseDamage = 0;
+        }
+
+        int damageDealt = multiplier*baseDamage;
+        return damageDealt;
+
     }
 
     //This method checks if the mobs health is more less than 1, if it is less than one, it returns false, else it returns true
@@ -208,6 +234,16 @@ public class Main {
 
     //Provides the loop where all my methods will be called in
     public static void runGame(){
+        boolean isPlayeralive = true;
+        intro();
+        while(isPlayeralive == true){
+
+
+
+
+            if(hp<1) isPlayeralive = false;
+        }
+
 
     }
 
