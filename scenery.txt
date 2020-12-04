@@ -1,4 +1,30 @@
 You stand in a mountainous terrain replete with small shrubs.  You can see a small body of water close by and a citadel to the east.  The temperature is quite cool and the sky is partially cloudy.
 You stand in a flat area sprinkled with huge brown stones.  You can see a tower to the north.  The temperature is warm and the sky is partially cloudy.
-You stand in a flat region dotted with huge multicolored stones. It's also spotted with trees, grass, and foul-smelling wildflowers. You can see a huge river close by and a citadel to the south. The temperature is quite cool and the sky is overcast.
 You stand in a broken terrain scattered with unusual grass and various wildflowers. You can see a stream in the distance. The temperature is a little cool and the sky is partially cloudy.
+You stand in a mountainous terrain spotted with gigantic pale stones.  You can see the ocean miles away and a fort in the distance.  The temperature is quite cool and the sky is overcast.
+You stand in a flat terrain replete with thorny plants.  You can see a tower not too far away.  The temperature is quite cool and the sky is partially cloudy.
+You stand in a hilly terrain scattered with huge wildflowers.  You can see a marsh not too far away.  The temperature is somewhat warm and the sky is mostly clear.
+You stand in a hilly area scattered with dead plants.  You can see a small body of water nearby and a monastery in the distance.  The temperature is hot and the sky is mostly clear.
+You stand in a flat area replete with shrubs and unusual grass.  You can see a waterfall miles away and a monastery to the south.  The temperature is cool and the sky is partially cloudy.
+You stand in a hilly terrain replete with worn-down colorful stones.  You can see a waterfall to the west.  The temperature is hot and the sky is mostly clear.
+You stand in a hilly region scattered with plants.  You can see a waterfall not too far away and a cave miles away.  The temperature is very warm and the sky is partially cloudy.
+You stand in a flat terrain scattered with unusual shrubs.  You can see the ocean nearby.  The temperature is hot and the sky is partially cloudy.
+You stand in a broken region scattered with jagged dark stones.  You can see a small body of water to the north and a village not too far away.  The temperature is very warm and the sky is mostly clear.
+You stand in a flat terrain scattered with grass.  You can see a lake to the west and a fort in the distance.  The temperature is very warm and the sky is partially cloudy.
+You stand in a mountainous region abounding with prickly trees and strange-looking grass.  You can see a city close by.  The temperature is somewhat warm and the sky is partially cloudy.
+You stand in a mountainous region replete with crystalline pale brown stones.  You can see a small body of water not too far away.  The temperature is warm and the sky is overcast.
+You stand in a hilly region strewn with jagged brown rocks.  You can see the ocean to the south.  The temperature is cold and the sky is mostly clear.
+You stand in a mountainous terrain scattered with huge greenish stones.  You can see a marsh not too far away.  The temperature is very warm and the sky is clear.
+You stand in a flat area dotted with unusual purplish stones.  You can see a marsh to the west.  The temperature is cool and the sky is partially cloudy.
+You stand in a flat region dotted with huge trees and gigantic wildflowers.  You can see a ruin miles away.  The temperature is somewhat warm and the sky is clear.
+You stand in a hilly region covered with jagged bluish stones.  You can see a small lake nearby and a city to the east.  The temperature is cool and the sky is mostly clear.
+You stand in a mountainous region spotted with various wildflowers.  You can see a ruin to the south.  The temperature is cold and the sky is partially cloudy.
+You stand in a mountainous terrain sprinkled with wildflowers.  You can see a ruin on the horizon.  The temperature is warm and the sky is partially cloudy.
+You stand in a mountainous region dotted with huge grass.  You can see the ocean to the west.  The temperature is cool and the sky is overcast.
+You stand in a hilly region abounding with small gray stones.  You can see a small body of water to the east.  The temperature is quite cool and the sky is clear.
+You stand in a mountainous region replete with unusual brown stones.  You can see a tower to the north.  The temperature is warm and the sky is mostly clear.
+You stand in a flat terrain dotted with huge bluish stones.  You can see a waterfall nearby and a tower to the south.  The temperature is hot and the sky is partially cloudy.
+You stand in a flat terrain replete with huge colorful rocks.  You can see a lake on the horizon and a tower nearby.  The temperature is somewhat warm and the sky is mostly clear.
+You stand in a flat region abounding with smooth pale stones.  You can see the ocean in the distance.  The temperature is somewhat warm and the sky is mostly clear.
+You stand in a flat terrain smattered with shrubs.  You can see a ruin miles away.  The temperature is warm and the sky is partially cloudy.
+You stand in a mountainous terrain abounding with unusual plants.  You can see a bog nearby.  The temperature is cool and the sky is overcast.
