@@ -25,7 +25,7 @@ public class Main {
     public static int mobHp;
     public static final Scanner input = new Scanner(System.in);
     static Random randint = new Random();
-    public static boolean isPlayeralive = true;
+    public static boolean playerLife = true;
 
 
     //Experimental and not in use at the moment. Creates a static window with basic attributes
@@ -122,7 +122,7 @@ public class Main {
                 keyBinds();
                 break;
             case('q'):
-                isPlayeralive = false;
+                playerLife = false;
                 break;
             default:
                 System.out.println("Invalid Input!!");
@@ -253,33 +253,58 @@ public class Main {
     public static void engageEnemy(){
         try {
             boolean enemyAlive = true;
+            int count = 0;
             while(enemyAlive) {
+
+                checkCount(count);
                 int a;
                 System.out.print("Your turn to attack- ");
                 char attackKey = input.nextLine().charAt(0);
+                TimeUnit.SECONDS.sleep(1);
+
                 if(attackKey == 'l'){
                     a = playerDamage();
-
+                    System.out.println("Damage dealt- " + a);
+                    System.out.println("Mob health- " + mobHp);
+                    count -= count;
                     TimeUnit.SECONDS.sleep(1);
                 }else if(attackKey == 'h'){
-                    playerDamage();
+                    a = playerDamage();
+                    System.out.println("Damage dealt- " + a);
+                    System.out.println("Mob health- " + mobHp);
                     mobHp -=10;
-                    TimeUnit.SECONDS.sleep(1);
-                }else if(attackKey == 'j'){
-                    System.out.println("dodging next attack...");
                     TimeUnit.SECONDS.sleep(1);
                 }else{
                     System.out.println("Invalid input!");
                 }
+
                 System.out.println("Enemy is now attacking!");
 
+
+                if(isMobAlive() == false){
+                    enemyAlive = false;
+                }else if(isPlayerAlive() == false){
+                    System.out.println("lmao you died !");
+
+                }
+
             }
+            System.out.println("You beat the mob, Well Done!");
 
 
 
 
         }catch(Exception e){
             System.out.println("Error: " + e);
+        }
+    }
+
+    //makes count = 0 if count is less than one so that the cooldown for the heavy attack works
+    public static int checkCount(int count){
+        if(count < 0){
+            return 0;
+        }else{
+            return count;
         }
     }
 
@@ -293,9 +318,9 @@ public class Main {
     //Provides the loop where all my methods will be called in
     public static void runGame(){
         intro();
-        while(isPlayeralive == true){
+        while(playerLife == true){
             userInput();
-            if(hp<1) isPlayeralive = false;
+            if(hp<1) playerLife = false;
         }
 
         System.out.println("GGWP");
