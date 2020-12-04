@@ -53,7 +53,7 @@ public class Main {
         System.out.println("Your shield can never break but cannot be used against heavy attacks");
         System.out.println("You have an inventory that has 5 weapon slots and a shield slot");
         System.out.println("When not in combat you can find people to fight by moving around the map by typing in forward, backward, right and left\nif" +
-                " there is a mob present, you will be told its name and will be given an option to engage or ignore");
+                " there is a mob present, you will given an option to engage or ignore");
         System.out.println("Continue using using movement commands to ignore and type in f to engage");
         System.out.println("A heavy attack can be used only when it has not been used for 2 turns, and does 10 extra damage");
         System.out.println("Type in i to display inventory");
@@ -202,7 +202,7 @@ public class Main {
         }else if(50<mobHp && mobHp<101){
             baseDamage = 3;
         }else{
-            baseDamage = 0;
+            baseDamage = 2;
         }
 
         int damageDealt = multiplier*baseDamage;
@@ -232,32 +232,14 @@ public class Main {
 
     }
 
-    //This method checks if the mobs health is more less than 1, if it is less than one, it returns false, else it returns true
-    public static boolean isMobAlive(){
-        if(mobHp<1){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    //This method checks if the players health is less than 1, if it is less than 1 it returns false, else it returns true
-    public static boolean isPlayerAlive(){
-        if(hp<1){
-            return false;
-        }else{
-            return true;
-        }
-    }
-
     //Engages battle mode where hp of you and the monster will display every now and then
     public static void engageEnemy(){
         try {
             boolean enemyAlive = true;
-            int count = 0;
-            while(enemyAlive) {
+//            int count = 0;
+            while(enemyAlive==true) {
 
-                checkCount(count);
+//                checkCount(count);
                 int a, x;
                 System.out.print("Your turn to attack- ");
                 char attackKey = input.nextLine().charAt(0);
@@ -265,34 +247,41 @@ public class Main {
 
                 if(attackKey == 'l'){
                     a = playerDamage();
-                    System.out.println("Damage dealt- " + a);
-                    System.out.println("Mob health- " + mobHp);
-                    count -= count;
-                    TimeUnit.MILLISECONDS.sleep(500);
+                    System.out.println("\n______________");
+                    System.out.println("Damage " + a);
+                    System.out.println("mob HP " + mobHp);
+                    System.out.println("--------------");
+
+                    TimeUnit.SECONDS.sleep(1);
                 }else if(attackKey == 'h'){
-                    a = playerDamage();
-                    System.out.println("Damage dealt- " + a);
-                    System.out.println("Mob health- " + mobHp);
+                    a = playerDamage() + 10;
                     mobHp -=10;
-                    TimeUnit.MILLISECONDS.sleep(500);
+                    System.out.println("\n______________");
+                    System.out.println("Damage " + a);
+                    System.out.println("mob HP " + mobHp);
+                    System.out.println("--------------");
+                    TimeUnit.SECONDS.sleep(1);
                 }else{
                     System.out.println("Invalid input!");
                 }
 
                 //Checks if Mob is still alive after player attacks
-                if(isMobAlive() == false){
+                if(mobHp<1){
                     enemyAlive = false;
                     break;
                 }
 
                 System.out.println("Enemy is now attacking!");
-                x = mobDamage();
                 TimeUnit.MILLISECONDS.sleep(500);
-                System.out.println("Damage taken- " + x);
-                System.out.println("Your Health- " + hp);
+                x = mobDamage();
+                System.out.println("\n______________");
+                System.out.println("Damage " + x);
+                System.out.println("Player HP " + hp);
+                System.out.println("--------------");
+                TimeUnit.SECONDS.sleep(1);
 
                 //Checks if player is still alive after mob attacks
-                 if(isPlayerAlive() == false){
+                 if(hp<1){
                     System.out.println("lmao you died !");
                     break;
                  }
@@ -309,7 +298,16 @@ public class Main {
         }
     }
 
+//    public static void printFightDetails(String entity, int damage, int currentHealth){
+//        currentHealth -= damage;
+//        System.out.println("______________");
+//        System.out.println("Damage " + damage);
+//        System.out.println(entity + " HP " + currentHealth);
+//        System.out.println("--------------");
+//   }
+
     //makes count = 0 if count is less than one so that the cooldown for the heavy attack works
+    //feature currently diasble due to difficulty of mobs
     public static int checkCount(int count){
         if(count < 0){
             return 0;
@@ -331,6 +329,8 @@ public class Main {
         printBugs();
         intro();
         rules();
+        inventory[0] = "Sword";
+        inventory[5] = "Shield";
         while(playerLife == true){
             userInput();
             if(hp<1) playerLife = false;
@@ -342,12 +342,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-//        setSceneryDirectory();
-//        for(int i =0; i<50; i++){
-//            searchLocation();
-//            setMobHp();
-//            System.out.println(mobDamage());
-//        }
         runGame();
 
 
