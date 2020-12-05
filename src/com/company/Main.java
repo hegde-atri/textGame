@@ -49,7 +49,7 @@ public class Main {
 
     //Intro to the game where basic rules are told and what to do in the game!
     public static void intro(){
-        System.out.println("Welcome to this game where you use inputs to move around and search the location. \nIf there is a mob in the location you fight it and it can drop loot, loot varies with the difficulty of the mob \nType in r for rules and y for inputs (case sensitive)");
+        System.out.println("Welcome to this game where you use inputs to move around and search the location. \nIf there is a mob in the location you fight it and it can drop loot, loot varies with the difficulty of the mob \nType in r for rules and y for inputs (case sensitive)\nFinally, the game's objective is to collect all the 6 different types of swords!");
     }
 
     //This displays the list of rules of the game
@@ -314,14 +314,7 @@ public class Main {
         }
     }
 
-//    public static void printFightDetails(String entity, int damage, int currentHealth){
-//        currentHealth -= damage;
-//        System.out.println("______________");
-//        System.out.println("Damage " + damage);
-//        System.out.println(entity + " HP " + currentHealth);
-//        System.out.println("--------------");
-//   }
-
+    //Assigns a random as droppedWeapon
     public static void itemDrop(){
         int a, x;
         x = randint.nextInt(7);
@@ -360,7 +353,6 @@ public class Main {
 
     }
 
-
     //makes count = 0 if count is less than one so that the cooldown for the heavy attack works
     //feature currently diasble
     public static int checkCount(int count){
@@ -384,7 +376,7 @@ public class Main {
         printBugs();
         intro();
         rules();
-        inventory[0][0] = "Wooden Sword";
+        inventory[0][0] = "| Wooden Sword |";
         inventory[1][0] = weapons[1][0];
 //        inventory[0][5] = "Shield";
         while(playerLife == true){
@@ -404,6 +396,8 @@ public class Main {
 //            displayInventory();
 //        }
         runGame();
+
+
 
 
 
