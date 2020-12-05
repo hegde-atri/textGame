@@ -2,7 +2,6 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +17,6 @@ public class Main {
 
 
     public static String sceneryDirectory, droppedWeapon;
-    int[] stats = new int[5];
     public static String[][] inventory = new String[2][6];
     public static int hp = 100;
     public static int mob, mobHp;
@@ -29,8 +27,8 @@ public class Main {
 
     public static String[][] weapons =
             {
-                    {"Wooden Sword", "Stone Sword", "Steel Sword", "Forged Sword", "Titanium Sword", "Excalibur"},
-                    {"3", "6", "10", "12", "18", "24"}
+                    {"| Wooden Sword |", "| Stone Sword |", "| Steel Sword |", "| Forged Sword |", "| Titanium Sword |", "| Excalibur |"},
+                    {"|       3      |", "|      6      |", "|     10      |", "|      12      |", "|       18       |", "|    24     |"}
             };
 
 
@@ -330,18 +328,34 @@ public class Main {
         if( x < 6){
             a = randint.nextInt(4);
         }else{
-            a =randint.nextInt(2)+5;
+            a =randint.nextInt(2)+4;
         }
 
         droppedWeapon = inventory[0][a];
-        System.out.println("Type r to discover the weapon drop");
+        System.out.println("Type u to discover the weapon drop");
     }
 
+    //This will ask the user where he wants to store is weapon in the inventory
     public static void pickDroppedItem(){
         System.out.println("Where would you like to store this item in your inventory (type in 1-6)");
         displayInventory();
-        int inventorySlot = input.nextInt();
+        int inventorySlot = Integer.parseInt(input.nextLine());
         inventory[0][inventorySlot-1] = droppedWeapon;
+
+        for( int i = 0; i < 2; ++i ) {
+            for(int j = 0; j < 6; ++j ) {
+                if( weapons[i][j] == droppedWeapon ) {
+                    inventory[1][inventorySlot-1] = weapons[1][j];
+                }
+            }
+        }
+
+        try {
+            TimeUnit.MICROSECONDS.sleep(500);
+        }catch(Exception e){
+            System.out.println("Error: " + e);
+        }
+        System.out.println("Weapon Stored!");
 
 
     }
@@ -384,9 +398,12 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-//        for(int x =0; x<50; x++){
-//            System.out.println(randint.nextInt(2)+5);
-//        }
+        for(int x =0; x<50; x++){
+            droppedWeapon ="| Stone Sword |";
+            pickDroppedItem();
+            displayInventory();
+        }
+
 
 
 
