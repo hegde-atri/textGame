@@ -303,6 +303,7 @@ public class Main {
 
             }
             if(playerLife == true) System.out.println("You beat the mob, Well Done!");
+            itemDrop();
 
 
 
@@ -322,7 +323,6 @@ public class Main {
 //   }
 
     public static void itemDrop(){
-        RandomLine reader = new RandomLine();
         int a, x;
         x = randint.nextInt(7);
         if( x < 6){
@@ -331,7 +331,7 @@ public class Main {
             a =randint.nextInt(2)+4;
         }
 
-        droppedWeapon = inventory[0][a];
+        droppedWeapon = weapons[0][a];
         System.out.println("Type u to discover the weapon drop");
     }
 
@@ -398,11 +398,13 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        for(int x =0; x<50; x++){
-            droppedWeapon ="| Stone Sword |";
-            pickDroppedItem();
-            displayInventory();
-        }
+//        for(int x =0; x<50; x++){
+//            itemDrop();
+//            pickDroppedItem();
+//            displayInventory();
+//        }
+        runGame();
+
 
 
 
