@@ -20,6 +20,7 @@ public class Main {
     public static String[][] inventory = new String[2][6];
     public static int hp = 100;
     public static int mob, mobHp;
+    public static int adrenalineSyringe = 0;
     public static final Scanner input = new Scanner(System.in);
     static Random randint = new Random();
     public static boolean playerLife = true;
@@ -28,7 +29,7 @@ public class Main {
     public static String[][] weapons =
             {
                     {"| Wooden Sword |", "| Stone Sword |", "| Steel Sword |", "| Forged Sword |", "| Titanium Sword |", "| Excalibur |"},
-                    {"|       3      |", "|      6      |", "|     10      |", "|      12      |", "|       18       |", "|    24     |"}
+                    {"3", "6", "10", "12", "18", "24"}
             };
 
 
@@ -58,12 +59,12 @@ public class Main {
         System.out.println("To start you will be given a wooden sword");
         System.out.println("Fighting mobs will earn XP");
         System.out.println("Fighting mob Bosses that appear randomly can give weapon drops at the end of the battle");
-        System.out.println("Your shield can never break but cannot be used against heavy attacks");
-        System.out.println("You have an inventory that has 5 weapon slots and a shield slot");
         System.out.println("When not in combat you can find people to fight by moving around the map by typing in forward, backward, right and left\nif" +
                 " there is a mob present, you will given an option to engage or ignore");
         System.out.println("Continue using using movement commands to ignore and type in f to engage");
-        System.out.println("A heavy attack can be used only when it has not been used for 2 turns, and does 10 extra damage");
+        System.out.println("A heavy attack does 10 extra damage (type y for controls)");
+        System.out.println("The game auto equips the highest damage dealing sword you have in your inventory");
+        System.out.println("You can use 2 health boosts after each fight, each giving 30HP each (cannot be stacked!)");
         System.out.println("Type in i to display inventory");
         System.out.println("Type in r to display this page again");
         System.out.println("`````````````````````````````````````````````````````````````````````````````````````````````````````````````````````````");
@@ -87,6 +88,7 @@ public class Main {
 //        System.out.println("  j = dodge              ");
 //        System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
+        System.out.println("  p = adrenaline syringe  ");
         System.out.println("  u = store item         ");
         System.out.println("1-6 = drop item from     ");
         System.out.println("      inventory          ");
@@ -134,6 +136,8 @@ public class Main {
             case('q'):
                 playerLife = false;
                 break;
+            case('p'):
+                useAdrenalineSyringe();
             default:
                 System.out.println("Invalid Input!!");
                 break;
@@ -172,7 +176,13 @@ public class Main {
                 if (inventory[x][i] == null) {
                     System.out.print("(empty) ");
                 } else {
-                    System.out.print(inventory[x][i] + " ");
+
+
+                    if(x == 1){
+                        System.out.print("       " + inventory[x][i]+"       ");
+                    }else{
+                        System.out.print(inventory[x][i]);
+                    }
                 }
             }
             System.out.println("");
@@ -228,16 +238,26 @@ public class Main {
     public static int playerDamage(){
 
         int multiplier = randint.nextInt(5)+1;  //This is multiplied with the baseDamage for total damage dealt
-        int baseDamage;                            //This changes according to the total health of the mob
+
+        //This finds the weapon that does most damage and uses it as the base damage
+        //Code block broken at the moment NumberFormatExperession Null
+
+//        int baseDamage = Integer.parseInt(inventory[1][0]);
+//        for(int i = 1; i < inventory.length;i++){
+//            if(Integer.parseInt(inventory[1][i]) > baseDamage){
+//                baseDamage = Integer.parseInt(inventory[1][i]);
+//            }
+//        }
+        int baseDamage = 1;
 
         if(150<hp && hp<201){
-            baseDamage = 8;
+            baseDamage += 8;
         }else if(100<hp && hp<151){
-            baseDamage = 7;
+            baseDamage += 7;
         }else if(50<hp && hp<101){
-            baseDamage = 6;
+            baseDamage += 6;
         }else{
-            baseDamage = 0;
+            baseDamage += 0;
         }
 
         int damageDealt = multiplier*baseDamage;
@@ -261,19 +281,19 @@ public class Main {
 
                 if(attackKey == 'l'){
                     a = playerDamage();
-                    System.out.println("\n______________");
+                    System.out.println("______________");
                     System.out.println("Damage " + a);
                     System.out.println("mob HP " + mobHp);
-                    System.out.println("--------------");
+                    System.out.println("--------------\n");
 
                     TimeUnit.SECONDS.sleep(1);
                 }else if(attackKey == 'h'){
                     a = playerDamage() + 10;
                     mobHp -=10;
-                    System.out.println("\n______________");
+                    System.out.println("______________");
                     System.out.println("Damage " + a);
                     System.out.println("mob HP " + mobHp);
-                    System.out.println("--------------");
+                    System.out.println("--------------\n");
                     TimeUnit.SECONDS.sleep(1);
                 }else{
                     System.out.println("Invalid input!");
@@ -289,21 +309,22 @@ public class Main {
                 System.out.println("Enemy is now attacking!");
                 TimeUnit.MILLISECONDS.sleep(500);
                 x = mobDamage();
-                System.out.println("\n______________");
+                System.out.println("______________");
                 System.out.println("Damage " + x);
                 System.out.println("Player HP " + hp);
-                System.out.println("--------------");
+                System.out.println("--------------\n");
                 TimeUnit.SECONDS.sleep(1);
 
                 //Checks if player is still alive after mob attacks
                  if(hp<1){
                     System.out.println("lmao you died !");
-                    break;
+                    System.exit(1);
                  }
 
             }
             if(playerLife == true) System.out.println("You beat the mob, Well Done!");
             itemDrop();
+            adrenalineSyringe = 2;
 
 
 
@@ -311,6 +332,18 @@ public class Main {
 
         }catch(Exception e){
             System.out.println("Error: " + e);
+        }
+    }
+
+    //This uses an adrenaline syringe if one if available
+    public static void useAdrenalineSyringe(){
+        if(adrenalineSyringe > 0){
+            hp += 30;
+            System.out.println("------------");
+            System.out.println("HP = " + hp );
+            System.out.println("------------");
+        }else{
+            System.out.println("You don't have any Adrenaline Syringes!");
         }
     }
 
