@@ -17,14 +17,24 @@ I have referred the enemies in the game as mobs which you will see frequently in
 public class Main {
 
 
-    public static String sceneryDirectory;
+    public static String sceneryDirectory, droppedWeapon;
     int[] stats = new int[5];
-    public static String[] inventory = new String[6];
+    public static String[][] inventory = new String[2][6];
     public static int hp = 100;
     public static int mob, mobHp;
     public static final Scanner input = new Scanner(System.in);
     static Random randint = new Random();
     public static boolean playerLife = true;
+
+
+    public static String[][] weapons =
+            {
+                    {"Wooden Sword", "Stone Sword", "Steel Sword", "Forged Sword", "Titanium Sword", "Excalibur"},
+                    {"3", "6", "10", "12", "18", "24"}
+            };
+
+
+
 
 
     //Experimental and not in use at the moment. Creates a static window with basic attributes
@@ -47,7 +57,7 @@ public class Main {
     //This displays the list of rules of the game
     public static void rules(){
         System.out.println("_______________________________________________________________________________________________________________________");
-        System.out.println("To start you will be given a sword and shield");
+        System.out.println("To start you will be given a wooden sword");
         System.out.println("Fighting mobs will earn XP");
         System.out.println("Fighting mob Bosses that appear randomly can give weapon drops at the end of the battle");
         System.out.println("Your shield can never break but cannot be used against heavy attacks");
@@ -79,7 +89,7 @@ public class Main {
 //        System.out.println("  j = dodge              ");
 //        System.out.println("  k = shield             ");
         System.out.println("  z = search Location    ");
-        System.out.println("  r = store item         ");
+        System.out.println("  u = store item         ");
         System.out.println("1-6 = drop item from     ");
         System.out.println("      inventory          ");
         System.out.println("  y = input page (current)");
@@ -116,6 +126,9 @@ public class Main {
                 break;
             case('z'):
                 searchLocation();
+                break;
+            case('u'):
+                pickDroppedItem();
                 break;
             case('y'):
                 keyBinds();
@@ -156,12 +169,15 @@ public class Main {
 
     //Displays the items in the Users Inventory
     public static void displayInventory(){
-        for(int i=0; i<6; i++){
-            if(inventory[i]==null){
-                System.out.print("(empty) ");
-            }else {
-                System.out.print(inventory[i] + " ");
+        for(int x = 0; x<2; x++){
+            for(int i=0; i<6; i++) {
+                if (inventory[x][i] == null) {
+                    System.out.print("(empty) ");
+                } else {
+                    System.out.print(inventory[x][i] + " ");
+                }
             }
+            System.out.println("");
         }
     }
 
@@ -265,6 +281,7 @@ public class Main {
                     System.out.println("Invalid input!");
                 }
 
+
                 //Checks if Mob is still alive after player attacks
                 if(mobHp<1){
                     enemyAlive = false;
@@ -306,8 +323,32 @@ public class Main {
 //        System.out.println("--------------");
 //   }
 
+    public static void itemDrop(){
+        RandomLine reader = new RandomLine();
+        int a, x;
+        x = randint.nextInt(7);
+        if( x < 6){
+            a = randint.nextInt(4);
+        }else{
+            a =randint.nextInt(2)+5;
+        }
+
+        droppedWeapon = inventory[0][a];
+        System.out.println("Type r to discover the weapon drop");
+    }
+
+    public static void pickDroppedItem(){
+        System.out.println("Where would you like to store this item in your inventory (type in 1-6)");
+        displayInventory();
+        int inventorySlot = input.nextInt();
+        inventory[0][inventorySlot-1] = droppedWeapon;
+
+
+    }
+
+
     //makes count = 0 if count is less than one so that the cooldown for the heavy attack works
-    //feature currently diasble due to difficulty of mobs
+    //feature currently diasble
     public static int checkCount(int count){
         if(count < 0){
             return 0;
@@ -318,9 +359,9 @@ public class Main {
 
     //Issues I'm aware and working to find a solution for
     public static void printBugs(){
-        System.out.println("Known bug: fight progress resets upon Invalid Input");
-        System.out.println("Release 0.1");
-        System.out.println("Atri Hegde ©");
+        System.out.println("lots of bugs atm!");
+        System.out.println("Release 0.2");
+        System.out.println("Atri Hegde©");
     }
 
     //Provides the loop where all my methods will be called in
@@ -329,8 +370,9 @@ public class Main {
         printBugs();
         intro();
         rules();
-        inventory[0] = "Sword";
-        inventory[5] = "Shield";
+        inventory[0][0] = "Wooden Sword";
+        inventory[1][0] = weapons[1][0];
+//        inventory[0][5] = "Shield";
         while(playerLife == true){
             userInput();
             if(hp<1) playerLife = false;
@@ -342,7 +384,11 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        runGame();
+//        for(int x =0; x<50; x++){
+//            System.out.println(randint.nextInt(2)+5);
+//        }
+
+
 
 
 
