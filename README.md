@@ -1,4 +1,4 @@
-# incomplete
+# Project dropped
 # text based Game
 * This page will be updated when it is finished.
 * Has no proper story and is very very basic for a text game.
